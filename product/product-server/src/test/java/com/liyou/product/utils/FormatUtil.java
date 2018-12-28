@@ -6,12 +6,13 @@ import org.apache.commons.collections.CollectionUtils;
 
 import java.util.List;
 
+/**
+ * @Auther: ltc
+ * @Date: 2018/12/28 14:27
+ * @Description: 格式化
+ */
 public class FormatUtil {
-    /**
-     * @Auther: ltc
-     * @Date: 2018/12/28 14:27
-     * @Description: 格式化
-     */
+
     public static String formatJson(String jsonStr) {
         if (null == jsonStr || "".equals(jsonStr))
             return "";
@@ -76,14 +77,6 @@ public class FormatUtil {
         }
     }
 
-    /**
-     * 添加space
-     *
-     * @param sb
-     * @param indent
-     * @author lizhgb
-     * @Date 2015-10-14 上午10:38:04
-     */
     private static void addIndentBlank(StringBuilder sb, int indent) {
         for (int i = 0; i < indent; i++) {
             sb.append('\t');

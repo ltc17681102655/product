@@ -1,7 +1,5 @@
 package com.liyou.product.biz;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.liyou.framework.common.utils.JSONUtils;
 import com.liyou.product.ProductApplicationTest;
 import com.liyou.product.common.model.AnalyticsObjectTypeEnum;
 import com.liyou.product.enumeration.EstateDataType;
@@ -26,7 +24,7 @@ public class ReportServiceImplTest extends ProductApplicationTest {
         List<HousePriceAreaSegmentData> cityHousePriceAreaSegmentDataList = reportService.getHousePriceAreaSegmentDataList(605,
                 AnalyticsObjectTypeEnum
                         .CITY, null, HouseSegmentEnum.PRICE_SEGMENT,
-                HouseDimension.SECOND_HAND_HOUSE, EstateDataType.HOUSING_TRANSACTION, 2018, 9);
+                HouseDimension.SECOND_HAND_HOUSE, EstateDataType.HOUSING_TRANSACTION, 2018, 13);
 
         FormatUtil.formatList(cityHousePriceAreaSegmentDataList);
 
