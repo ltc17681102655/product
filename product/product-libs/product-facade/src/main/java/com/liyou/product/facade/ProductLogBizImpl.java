@@ -1,10 +1,10 @@
 package com.liyou.product.facade;
 
 import com.liyou.framework.base.utils.ObjectUtils;
-import com.liyou.product.biz.TaskSchedulingBiz;
-import com.liyou.product.biz.model.TaskSchedulingBO;
-import com.liyou.product.dao.TaskSchedulingRepo;
-import com.liyou.product.dao.model.TaskSchedulingEntity;
+import com.liyou.product.biz.ProductLogBiz;
+import com.liyou.product.biz.model.ProductLogBO;
+import com.liyou.product.dao.ProductLogInfoRepo;
+import com.liyou.product.dao.model.ProductLogInfoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,20 +21,20 @@ import java.util.concurrent.TimeUnit;
  * </pre>
  */
 @Service
-public class TaskSchedulingBizImpl implements TaskSchedulingBiz {
+public class ProductLogBizImpl implements ProductLogBiz {
     
     @Autowired
-    private TaskSchedulingRepo taskSchedulingRepo;
+    private ProductLogInfoRepo productLogInfoRepo;
     
     @Override
-    public TaskSchedulingBO create(TaskSchedulingBO taskSchedulingBO) {
-        TaskSchedulingEntity entity = convert(taskSchedulingBO);
-        entity = this.taskSchedulingRepo.save(entity);
-        return ObjectUtils.copy(entity, TaskSchedulingBO.class);
+    public ProductLogBO create(ProductLogBO productLogBO) {
+        ProductLogInfoEntity entity = convert(productLogBO);
+        entity = this.productLogInfoRepo.save(entity);
+        return ObjectUtils.copy(entity, ProductLogBO.class);
     }
     
-    static TaskSchedulingEntity convert(TaskSchedulingBO taskSchedulingBO) {
-        TaskSchedulingEntity entity = ObjectUtils.copy(taskSchedulingBO, TaskSchedulingEntity.class);
+    static ProductLogInfoEntity convert(ProductLogBO productLogBO) {
+        ProductLogInfoEntity entity = ObjectUtils.copy(productLogBO, ProductLogInfoEntity.class);
         // 计算任务用时
         if (Objects.nonNull(entity.getBeginTime()) && Objects.nonNull(entity.getEndTime())) {
             long time = entity.getEndTime().getTime() - entity.getBeginTime().getTime();

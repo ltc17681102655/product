@@ -1,10 +1,12 @@
 package com.liyou.product.facade;
 
 import com.liyou.framework.base.model.Response;
+import com.liyou.framework.page.PageCustom;
 import com.liyou.framework.page.PageRequestCustom;
 import com.liyou.product.ReportFacade;
 import com.liyou.product.biz.ReportService;
 import com.liyou.product.common.annotations.Product;
+import com.liyou.product.common.enums.DealTypeEnum;
 import com.liyou.product.common.model.AnalyticsObjectTypeEnum;
 import com.liyou.product.common.model.AnalyticsSort;
 import com.liyou.product.common.model.IndexService;
@@ -13,6 +15,7 @@ import com.liyou.product.common.model.criteria.HistoryIndexQuery;
 import com.liyou.product.enumeration.EstateDataType;
 import com.liyou.product.enumeration.HouseDimension;
 import com.liyou.product.enumeration.HouseSegmentEnum;
+import com.liyou.product.model.HouseDealInfo;
 import com.liyou.product.model.HousePriceAreaSegmentData;
 import com.liyou.product.model.IndexDataCollection;
 import org.slf4j.Logger;
@@ -39,7 +42,7 @@ public class ReportFacadeImpl implements ReportFacade {
     private ReportService reportService;
 
     @Override
-    @Product("findHistoryIndex")
+    @Product("报告商城指标数据")
     public Response<IndexDataCollection> findHistoryIndex(HistoryIndexQuery query) {
         try {
             AnalyticsSort[] sorts = query.getAnalyticsSorts().toArray(new AnalyticsSort[]{});
@@ -54,7 +57,7 @@ public class ReportFacadeImpl implements ReportFacade {
     }
 
     @Override
-    @Product("getHousePriceAreaSegmentDataList")
+    @Product("报告商城饼状图")
     public Response<List<HousePriceAreaSegmentData>> getHousePriceAreaSegmentDataList(Integer cityId, AnalyticsObjectTypeEnum analyticsObjectType,
                                                                                       Integer targetId, HouseSegmentEnum houseSegmentEnum,
                                                                                       HouseDimension dimension, EstateDataType estateDataType, int
@@ -65,6 +68,29 @@ public class ReportFacadeImpl implements ReportFacade {
                     month));
         } catch (Exception e) {
             LOGGER.warn("查询总价段，面积段，单价段数据", e);
+            return Response.failure(e);
+        }
+    }
+
+    /**
+     * 通过dealType获取小区成交信息
+     *
+     * @param cityId
+     * @param houseId
+     * @param dealTypes
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @Override
+    @Product("新房成交饼状图")
+    public Response<PageCustom<HouseDealInfo>> getHouseDealInfoByDealType(Integer cityId, Integer houseId, List<DealTypeEnum> dealTypes, Integer
+            pageNo, Integer pageSize) {
+        try {
+            PageCustom<HouseDealInfo> houseDealInfos = reportService.getHouseDealInfoByDealType(cityId, houseId, dealTypes, pageNo, pageSize);
+            return Response.success(houseDealInfos);
+        } catch (Exception e) {
+            LOGGER.error("通过dealType获取小区成交信息失败，异常信息为：{}", e);
             return Response.failure(e);
         }
     }

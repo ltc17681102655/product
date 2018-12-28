@@ -1,7 +1,7 @@
 package com.liyou.product.biz;
 
 
-import com.liyou.product.biz.model.TaskSchedulingBO;
+import com.liyou.product.biz.model.ProductLogBO;
 
 /**
  * <pre>
@@ -12,13 +12,13 @@ import com.liyou.product.biz.model.TaskSchedulingBO;
  * @date: 2018/11/7
  * </pre>
  */
-public interface TaskSchedulingBiz {
+public interface ProductLogBiz {
     
     /**
      * 创建任务调度记录
      *
-     * @param taskSchedulingBO
+     * @param productLogBO
      * @return
      */
-    TaskSchedulingBO create(TaskSchedulingBO taskSchedulingBO);
+    ProductLogBO create(ProductLogBO productLogBO);
 }

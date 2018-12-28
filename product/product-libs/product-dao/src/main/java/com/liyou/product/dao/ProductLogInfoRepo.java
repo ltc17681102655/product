@@ -1,7 +1,7 @@
 package com.liyou.product.dao;
 
 
-import com.liyou.product.dao.model.TaskSchedulingEntity;
+import com.liyou.product.dao.model.ProductLogInfoEntity;
 
 /**
  * <pre>
@@ -12,5 +12,5 @@ import com.liyou.product.dao.model.TaskSchedulingEntity;
  * @date: 2018/11/7
  * </pre>
  */
-public interface TaskSchedulingRepo extends BaseRepo<TaskSchedulingEntity> {
+public interface ProductLogInfoRepo extends BaseRepo<ProductLogInfoEntity> {
 }

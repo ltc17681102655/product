@@ -1,8 +1,8 @@
 package com.liyou.product.facade.handle;
 
 import com.liyou.framework.base.model.YesOrNo;
-import com.liyou.product.biz.TaskSchedulingBiz;
-import com.liyou.product.biz.model.TaskSchedulingBO;
+import com.liyou.product.biz.ProductLogBiz;
+import com.liyou.product.biz.model.ProductLogBO;
 import com.liyou.product.common.annotations.Product;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -15,9 +15,10 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @author vincent
- * 通过AOP监控方法的执行情况，并保存到数据库中
- **/
+ * @Auther: ltc
+ * @Date: 2018/12/28 15:46
+ * @Description: 通过AOP监控方法的执行情况，并保存到数据库中
+ */
 @Aspect
 @Component
 public class ScheduledHandler {
@@ -26,7 +27,7 @@ public class ScheduledHandler {
     private static int MAX_MESSAGE_LENGTH = 500;
 
     @Autowired
-    private TaskSchedulingBiz schedulingBiz;
+    private ProductLogBiz productLogBiz;
 
     @Around("@annotation(org.springframework.scheduling.annotation.Scheduled)")
     public Object aroundScheduled(ProceedingJoinPoint point) {
@@ -41,27 +42,26 @@ public class ScheduledHandler {
     private Object around(ProceedingJoinPoint point, Product product) {
         LOGGER.debug("调用方法：{}", point.getSignature());
         Object result = null;
-        TaskSchedulingBO schedulingBO = new TaskSchedulingBO();
         try {
             result = point.proceed();
         } catch (Throwable ex) {
+            ProductLogBO schedulingBO = new ProductLogBO();
             String taskName = product == null ? point.getTarget().getClass().getSimpleName() : product.value();
             schedulingBO.setTaskName(taskName);
             schedulingBO.setClassName(point.getTarget().getClass().getName());
             schedulingBO.setMethodName(point.getSignature().getName());
             schedulingBO.setBeginTime(new Date());
-            schedulingBO.setSuccess(YesOrNo.N);
             String message = ex.getMessage();
             if (message != null && message.length() > MAX_MESSAGE_LENGTH) {
                 message = message.substring(0, MAX_MESSAGE_LENGTH);
             }
+            schedulingBO.setSuccess(YesOrNo.N);
             schedulingBO.setMessage(message);
-            LOGGER.info("商品服务调用失败", message, ex);
-        } finally {
             schedulingBO.setEndTime(new Date());
-            schedulingBO = this.schedulingBiz.create(schedulingBO);
-            LOGGER.debug("生成商品服务错误记录id：{}", schedulingBO.getId());
+            schedulingBO = this.productLogBiz.create(schedulingBO);
+            LOGGER.info("商品服务调用失败id:{},message:{}", schedulingBO.getId(), message, ex);
         }
+
         return result;
     }
 }

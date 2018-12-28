@@ -1,11 +1,14 @@
 package com.liyou.product;
 
 import com.liyou.framework.base.model.Response;
+import com.liyou.framework.page.PageCustom;
+import com.liyou.product.common.enums.DealTypeEnum;
 import com.liyou.product.common.model.AnalyticsObjectTypeEnum;
 import com.liyou.product.common.model.criteria.HistoryIndexQuery;
 import com.liyou.product.enumeration.EstateDataType;
 import com.liyou.product.enumeration.HouseDimension;
 import com.liyou.product.enumeration.HouseSegmentEnum;
+import com.liyou.product.model.HouseDealInfo;
 import com.liyou.product.model.HousePriceAreaSegmentData;
 import com.liyou.product.model.IndexDataCollection;
 
@@ -44,4 +47,16 @@ public interface ReportFacade {
                                                                                HouseDimension dimension, EstateDataType estateDataType, int year,
                                                                                int month);
 
+    /**
+     * 通过dealType获取小区成交信息
+     *
+     * @param cityId
+     * @param houseId
+     * @param dealTypes
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    Response<PageCustom<HouseDealInfo>> getHouseDealInfoByDealType(Integer cityId, Integer houseId, List<DealTypeEnum> dealTypes, Integer pageNo,
+                                                                   Integer pageSize);
 }

@@ -13,7 +13,7 @@ import com.querydsl.core.types.Path;
  * QTaskSchedulingEntity is a Querydsl query type for TaskSchedulingEntity
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QTaskSchedulingEntity extends EntityPathBase<TaskSchedulingEntity> {
+public class QTaskSchedulingEntity extends EntityPathBase<ProductLogInfoEntity> {
 
     private static final long serialVersionUID = 728127989L;
 
@@ -38,15 +38,15 @@ public class QTaskSchedulingEntity extends EntityPathBase<TaskSchedulingEntity> 
     public final StringPath taskName = createString("taskName");
 
     public QTaskSchedulingEntity(String variable) {
-        super(TaskSchedulingEntity.class, forVariable(variable));
+        super(ProductLogInfoEntity.class, forVariable(variable));
     }
 
-    public QTaskSchedulingEntity(Path<? extends TaskSchedulingEntity> path) {
+    public QTaskSchedulingEntity(Path<? extends ProductLogInfoEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QTaskSchedulingEntity(PathMetadata metadata) {
-        super(TaskSchedulingEntity.class, metadata);
+        super(ProductLogInfoEntity.class, metadata);
     }
 
 }
