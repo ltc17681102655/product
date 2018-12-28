@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @Auther: ltc
@@ -40,9 +41,10 @@ public class ScheduledHandler {
     }
 
     private Object around(ProceedingJoinPoint point, Product product) {
-        LOGGER.debug("调用方法：{}", point.getSignature());
         Object result = null;
         try {
+            //打印参数
+            this.printPointMessage(point);
             result = point.proceed();
         } catch (Throwable ex) {
             ProductLogBO schedulingBO = new ProductLogBO();
@@ -63,5 +65,22 @@ public class ScheduledHandler {
         }
 
         return result;
+    }
+
+    private void printPointMessage(ProceedingJoinPoint point) {
+        if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("调用方法：{}", point.getSignature().toLongString());
+            LOGGER.debug("方法参数：{}", this.getRequestParam(point));
+        }
+    }
+
+    private String getRequestParam(ProceedingJoinPoint point) {
+        StringBuilder builder = new StringBuilder();
+        for (Object obj : point.getArgs()) {
+            builder.append("\r\n");
+            builder.append(Objects.nonNull(obj) ? obj.toString() : null);
+            builder.append(";");
+        }
+        return builder.toString();
     }
 }

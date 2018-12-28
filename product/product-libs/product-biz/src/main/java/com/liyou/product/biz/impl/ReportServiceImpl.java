@@ -70,6 +70,7 @@ public class ReportServiceImpl implements ReportService {
     private HouseDealBuildingAnalysisRepo houseDealBuildingAnalysisRepo;
 
     @Override
+    @Product("报告商城饼状图")
     public List<HousePriceAreaSegmentData> getHousePriceAreaSegmentDataList(Integer cityId, AnalyticsObjectTypeEnum analyticsObjectType,
                                                                             Integer targetId, HouseSegmentEnum houseSegmentEnum, HouseDimension
                                                                                     dimension, EstateDataType estateDataType, int year, int
@@ -226,6 +227,7 @@ public class ReportServiceImpl implements ReportService {
      * @return
      */
     @Override
+    @Product("新房成交饼状图")
     public PageCustom<HouseDealInfo> getHouseDealInfoByDealType(Integer cityId, Integer houseId, List<DealTypeEnum> dealTypes, Integer pageNo,
                                                                 Integer pageSize) {
 
