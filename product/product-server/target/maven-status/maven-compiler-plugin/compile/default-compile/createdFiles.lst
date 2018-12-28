@@ -1,0 +1,4 @@
+com\liyou\product\config\Product.class
+com\liyou\product\config\ScheduledHandler.class
+com\liyou\market\config\ServerConfig.class
+com\liyou\product\ProductApplication.class

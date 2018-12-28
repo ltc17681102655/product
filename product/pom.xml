@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>product-contexts</module>
+        <module>product-libs</module>
+        <module>product-server</module>
+    </modules>
+
+    <parent>
+        <groupId>com.liyou.framework</groupId>
+        <artifactId>framework-parent</artifactId>
+        <version>2.0.32</version>
+    </parent>
+
+    <groupId>com.liyou.product</groupId>
+    <artifactId>platform-product</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- 属性配置 -->
+    <properties>
+        <product.version>${project.version}</product.version>
+        <hikariCP.version>2.7.8</hikariCP.version>
+    </properties>
+
+    <!-- 依赖管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${hikariCP.version}</version>
+            </dependency>
+
+            <!-- market 项目依赖管理 -->
+            <dependency>
+                <groupId>com.liyou.product</groupId>
+                <artifactId>product-dao</artifactId>
+                <version>${product.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liyou.product</groupId>
+                <artifactId>product-api</artifactId>
+                <version>${product.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liyou.product</groupId>
+                <artifactId>product-common</artifactId>
+                <version>${product.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liyou.product</groupId>
+                <artifactId>product-biz</artifactId>
+                <version>${product.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liyou.product</groupId>
+                <artifactId>product-facade</artifactId>
+                <version>${product.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>2.0.0.RELEASE</version>
+                <scope>test</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 仓库地址 需要指定不然找不到framework -->
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://gitlab.tuboshi.co:8081/nexus/content/repositories/public/</url>
+        </repository>
+    </repositories>
+
+    <!-- 插件地址 -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>liyou-nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://gitlab.tuboshi.co:8081/nexus/content/repositories/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
