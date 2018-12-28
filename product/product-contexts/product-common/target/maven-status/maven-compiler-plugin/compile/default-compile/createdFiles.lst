@@ -12,6 +12,7 @@ com\liyou\product\common\model\Dimension.class
 com\liyou\product\common\model\HistoryIndexQueryHelp$CustomStatisticsObject.class
 com\liyou\product\common\model\StatisticsObject.class
 com\liyou\product\common\model\AnalyticsSort.class
+com\liyou\product\common\annotations\Product.class
 com\liyou\product\common\model\IndexService.class
 com\liyou\product\common\model\StatisticsObject$StatisticsObjectType.class
 com\liyou\product\common\model\criteria\HistoryIndexQuery.class

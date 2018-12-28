@@ -1,15 +1,11 @@
-package com.liyou.product.config;
+package com.liyou.product.common.annotations;
 
 import java.lang.annotation.*;
 
 /**
- * <pre>
- * @description
- * @copyright: Copyright (c)2017
- * @author: vincent
- * @version: 1.0
- * @date: 2018/11/20
- * </pre>
+ * @Auther: ltc
+ * @Date: 2018/12/28 13:36
+ * @Description: 商品服务
  */
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)

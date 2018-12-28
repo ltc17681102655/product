@@ -22,28 +22,21 @@ public class ReportServiceImplTest extends ProductApplicationTest {
 
     @Test
     public void getHousePriceAreaSegmentDataList() {
-        try {
-            //城市(上海)
-            List<HousePriceAreaSegmentData> cityHousePriceAreaSegmentDataList = reportService.getHousePriceAreaSegmentDataList(605,
-                    AnalyticsObjectTypeEnum
-                            .CITY, null, HouseSegmentEnum.PRICE_SEGMENT,
-                    HouseDimension.SECOND_HAND_HOUSE, EstateDataType.HOUSING_TRANSACTION, 2018, 9);
+        //城市(上海)
+        List<HousePriceAreaSegmentData> cityHousePriceAreaSegmentDataList = reportService.getHousePriceAreaSegmentDataList(605,
+                AnalyticsObjectTypeEnum
+                        .CITY, null, HouseSegmentEnum.PRICE_SEGMENT,
+                HouseDimension.SECOND_HAND_HOUSE, EstateDataType.HOUSING_TRANSACTION, 2018, 9);
 
-            String cityResult = JSONUtils.toJSON(cityHousePriceAreaSegmentDataList);
-            System.out.println("城市==" + FormatUtil.formatJson(cityResult));
+        FormatUtil.formatList(cityHousePriceAreaSegmentDataList);
 
-            //区域(浦东)
-            List<HousePriceAreaSegmentData> districtHousePriceAreaSegmentDataList = reportService.getHousePriceAreaSegmentDataList(605,
-                    AnalyticsObjectTypeEnum
-                            .DISTRICT, 5342, HouseSegmentEnum.PRICE_SEGMENT,
-                    HouseDimension.SECOND_HAND_HOUSE, EstateDataType.HOUSING_TRANSACTION, 2018, 9);
+        //区域(浦东)
+        List<HousePriceAreaSegmentData> districtHousePriceAreaSegmentDataList = reportService.getHousePriceAreaSegmentDataList(605,
+                AnalyticsObjectTypeEnum
+                        .DISTRICT, 5342, HouseSegmentEnum.PRICE_SEGMENT,
+                HouseDimension.SECOND_HAND_HOUSE, EstateDataType.HOUSING_TRANSACTION, 2018, 9);
 
-
-            String districtResult = JSONUtils.toJSON(districtHousePriceAreaSegmentDataList);
-            System.out.println("区域==" + FormatUtil.formatJson(districtResult));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        FormatUtil.formatList(districtHousePriceAreaSegmentDataList);
 
     }
 

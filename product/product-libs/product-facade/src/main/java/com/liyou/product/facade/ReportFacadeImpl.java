@@ -4,6 +4,7 @@ import com.liyou.framework.base.model.Response;
 import com.liyou.framework.page.PageRequestCustom;
 import com.liyou.product.ReportFacade;
 import com.liyou.product.biz.ReportService;
+import com.liyou.product.common.annotations.Product;
 import com.liyou.product.common.model.AnalyticsObjectTypeEnum;
 import com.liyou.product.common.model.AnalyticsSort;
 import com.liyou.product.common.model.IndexService;
@@ -38,6 +39,7 @@ public class ReportFacadeImpl implements ReportFacade {
     private ReportService reportService;
 
     @Override
+    @Product("findHistoryIndex")
     public Response<IndexDataCollection> findHistoryIndex(HistoryIndexQuery query) {
         try {
             AnalyticsSort[] sorts = query.getAnalyticsSorts().toArray(new AnalyticsSort[]{});
@@ -52,6 +54,7 @@ public class ReportFacadeImpl implements ReportFacade {
     }
 
     @Override
+    @Product("getHousePriceAreaSegmentDataList")
     public Response<List<HousePriceAreaSegmentData>> getHousePriceAreaSegmentDataList(Integer cityId, AnalyticsObjectTypeEnum analyticsObjectType,
                                                                                       Integer targetId, HouseSegmentEnum houseSegmentEnum,
                                                                                       HouseDimension dimension, EstateDataType estateDataType, int
