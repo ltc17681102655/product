@@ -22,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ import java.util.List;
  * @Date: 2018/11/6 12:28
  * @Description:
  */
+@Service
 public class ReportFacadeImpl implements ReportFacade {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReportFacadeImpl.class);

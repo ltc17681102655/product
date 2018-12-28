@@ -49,7 +49,7 @@ public class ReportServiceImplTest extends ProductApplicationTest {
          */
         PageCustom<HouseDealInfo> houseDealInfoByDealType = reportService.getHouseDealInfoByDealType(605, 4691, Lists.newArrayList(DealTypeEnum
                         .ROOM_TYPE,
-                DealTypeEnum.SING_PRICE, DealTypeEnum.FLOOR, DealTypeEnum.BUILDING), 1, 100);
+                DealTypeEnum.SING_PRICE, DealTypeEnum.FLOOR, DealTypeEnum.BUILDING), -1, 100);
 
         System.out.println("========");
         FormatUtil.formatList(houseDealInfoByDealType.getContent());
