@@ -7,11 +7,15 @@ import javax.persistence.Enumerated;
 import java.util.Date;
 
 /**
- * @Auther: ltc
- * @Date: 2018/12/28 15:49
- * @Description: 商品服务错误记录
+ * <pre>
+ * @description
+ * @copyright: Copyright (c)2017
+ * @author: vincent
+ * @version: 1.0
+ * @date: 2018/11/7
+ * </pre>
  */
-public class ProductErrorLogBO {
+public class ProductLogBO {
     private Long id;
     /**
      * 任务名称
@@ -34,6 +38,11 @@ public class ProductErrorLogBO {
      */
     private Date endTime;
     /**
+     * 是否成功
+     */
+    @Enumerated(EnumType.STRING)
+    private YesOrNo success;
+    /**
      * 信息
      */
     private String message;
@@ -42,7 +51,7 @@ public class ProductErrorLogBO {
         return id;
     }
 
-    public ProductErrorLogBO setId(Long id) {
+    public ProductLogBO setId(Long id) {
         this.id = id;
         return this;
     }
@@ -51,7 +60,7 @@ public class ProductErrorLogBO {
         return taskName;
     }
 
-    public ProductErrorLogBO setTaskName(String taskName) {
+    public ProductLogBO setTaskName(String taskName) {
         this.taskName = taskName;
         return this;
     }
@@ -60,7 +69,7 @@ public class ProductErrorLogBO {
         return className;
     }
 
-    public ProductErrorLogBO setClassName(String className) {
+    public ProductLogBO setClassName(String className) {
         this.className = className;
         return this;
     }
@@ -69,7 +78,7 @@ public class ProductErrorLogBO {
         return methodName;
     }
 
-    public ProductErrorLogBO setMethodName(String methodName) {
+    public ProductLogBO setMethodName(String methodName) {
         this.methodName = methodName;
         return this;
     }
@@ -78,7 +87,7 @@ public class ProductErrorLogBO {
         return beginTime;
     }
 
-    public ProductErrorLogBO setBeginTime(Date beginTime) {
+    public ProductLogBO setBeginTime(Date beginTime) {
         this.beginTime = beginTime;
         return this;
     }
@@ -87,8 +96,17 @@ public class ProductErrorLogBO {
         return endTime;
     }
 
-    public ProductErrorLogBO setEndTime(Date endTime) {
+    public ProductLogBO setEndTime(Date endTime) {
         this.endTime = endTime;
+        return this;
+    }
+
+    public YesOrNo getSuccess() {
+        return success;
+    }
+
+    public ProductLogBO setSuccess(YesOrNo success) {
+        this.success = success;
         return this;
     }
 
@@ -96,7 +114,7 @@ public class ProductErrorLogBO {
         return message;
     }
 
-    public ProductErrorLogBO setMessage(String message) {
+    public ProductLogBO setMessage(String message) {
         this.message = message;
         return this;
     }
@@ -110,6 +128,7 @@ public class ProductErrorLogBO {
         sb.append(", methodName='").append(methodName).append('\'');
         sb.append(", beginTime=").append(beginTime);
         sb.append(", endTime=").append(endTime);
+        sb.append(", success=").append(success);
         sb.append(", message='").append(message).append('\'');
         sb.append('}');
         return sb.toString();

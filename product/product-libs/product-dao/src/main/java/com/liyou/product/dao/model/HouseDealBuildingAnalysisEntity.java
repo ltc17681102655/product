@@ -1,6 +1,6 @@
-package com.liyou.service.estate.entity;
+package com.liyou.product.dao.model;
 
-import com.liyou.service.estate.entity.keys.HouseDealBuildingKey;
+import com.liyou.product.dao.model.keys.HouseDealBuildingKey;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.liyou.service.estate.entity.keys;
+package com.liyou.product.dao.model.keys;
 
 import java.io.Serializable;
 

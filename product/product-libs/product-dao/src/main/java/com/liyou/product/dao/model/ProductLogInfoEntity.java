@@ -16,7 +16,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "cron_task_scheduling")
-public class TaskSchedulingEntity {
+public class ProductLogInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -58,7 +58,7 @@ public class TaskSchedulingEntity {
         return id;
     }
     
-    public TaskSchedulingEntity setId(Long id) {
+    public ProductLogInfoEntity setId(Long id) {
         this.id = id;
         return this;
     }
@@ -67,7 +67,7 @@ public class TaskSchedulingEntity {
         return taskName;
     }
     
-    public TaskSchedulingEntity setTaskName(String taskName) {
+    public ProductLogInfoEntity setTaskName(String taskName) {
         this.taskName = taskName;
         return this;
     }
@@ -76,7 +76,7 @@ public class TaskSchedulingEntity {
         return className;
     }
     
-    public TaskSchedulingEntity setClassName(String className) {
+    public ProductLogInfoEntity setClassName(String className) {
         this.className = className;
         return this;
     }
@@ -85,7 +85,7 @@ public class TaskSchedulingEntity {
         return methodName;
     }
     
-    public TaskSchedulingEntity setMethodName(String methodName) {
+    public ProductLogInfoEntity setMethodName(String methodName) {
         this.methodName = methodName;
         return this;
     }
@@ -94,7 +94,7 @@ public class TaskSchedulingEntity {
         return beginTime;
     }
     
-    public TaskSchedulingEntity setBeginTime(Date beginTime) {
+    public ProductLogInfoEntity setBeginTime(Date beginTime) {
         this.beginTime = beginTime;
         return this;
     }
@@ -103,7 +103,7 @@ public class TaskSchedulingEntity {
         return endTime;
     }
     
-    public TaskSchedulingEntity setEndTime(Date endTime) {
+    public ProductLogInfoEntity setEndTime(Date endTime) {
         this.endTime = endTime;
         return this;
     }
@@ -112,7 +112,7 @@ public class TaskSchedulingEntity {
         return performDuration;
     }
     
-    public TaskSchedulingEntity setPerformDuration(Long performDuration) {
+    public ProductLogInfoEntity setPerformDuration(Long performDuration) {
         this.performDuration = performDuration;
         return this;
     }
@@ -121,7 +121,7 @@ public class TaskSchedulingEntity {
         return success;
     }
     
-    public TaskSchedulingEntity setSuccess(YesOrNo success) {
+    public ProductLogInfoEntity setSuccess(YesOrNo success) {
         this.success = success;
         return this;
     }
@@ -130,7 +130,7 @@ public class TaskSchedulingEntity {
         return message;
     }
     
-    public TaskSchedulingEntity setMessage(String message) {
+    public ProductLogInfoEntity setMessage(String message) {
         this.message = message;
         return this;
     }
