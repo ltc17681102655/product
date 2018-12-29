@@ -43,7 +43,7 @@ public class ReportServiceImplTest extends ProductApplicationTest {
     }
 
     @Test
-    public void getHouseDealInfoByDealType() {
+    public void getHouseDealInfoByDealType() throws Exception {
         /**
          * 从1开始
          */

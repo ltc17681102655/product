@@ -10,14 +10,14 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QTaskSchedulingEntity is a Querydsl query type for TaskSchedulingEntity
+ * QProductLogInfoEntity is a Querydsl query type for ProductLogInfoEntity
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QTaskSchedulingEntity extends EntityPathBase<ProductLogInfoEntity> {
+public class QProductLogInfoEntity extends EntityPathBase<ProductLogInfoEntity> {
 
-    private static final long serialVersionUID = 728127989L;
+    private static final long serialVersionUID = 1188079519L;
 
-    public static final QTaskSchedulingEntity taskSchedulingEntity = new QTaskSchedulingEntity("taskSchedulingEntity");
+    public static final QProductLogInfoEntity productLogInfoEntity = new QProductLogInfoEntity("productLogInfoEntity");
 
     public final DateTimePath<java.util.Date> beginTime = createDateTime("beginTime", java.util.Date.class);
 
@@ -37,15 +37,15 @@ public class QTaskSchedulingEntity extends EntityPathBase<ProductLogInfoEntity> 
 
     public final StringPath taskName = createString("taskName");
 
-    public QTaskSchedulingEntity(String variable) {
+    public QProductLogInfoEntity(String variable) {
         super(ProductLogInfoEntity.class, forVariable(variable));
     }
 
-    public QTaskSchedulingEntity(Path<? extends ProductLogInfoEntity> path) {
+    public QProductLogInfoEntity(Path<? extends ProductLogInfoEntity> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QTaskSchedulingEntity(PathMetadata metadata) {
+    public QProductLogInfoEntity(PathMetadata metadata) {
         super(ProductLogInfoEntity.class, metadata);
     }
 

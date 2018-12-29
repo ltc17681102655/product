@@ -42,6 +42,7 @@ public class ScheduledHandler {
 
     private Object around(ProceedingJoinPoint point, Product product) {
         Object result = null;
+        Date beginDate = new Date();
         try {
             //打印参数
             this.printPointMessage(point);
@@ -52,7 +53,7 @@ public class ScheduledHandler {
             schedulingBO.setTaskName(taskName);
             schedulingBO.setClassName(point.getTarget().getClass().getName());
             schedulingBO.setMethodName(point.getSignature().getName());
-            schedulingBO.setBeginTime(new Date());
+            schedulingBO.setBeginTime(beginDate);
             String message = ex.getMessage();
             if (message != null && message.length() > MAX_MESSAGE_LENGTH) {
                 message = message.substring(0, MAX_MESSAGE_LENGTH);
@@ -60,8 +61,11 @@ public class ScheduledHandler {
             schedulingBO.setSuccess(YesOrNo.N);
             schedulingBO.setMessage(message);
             schedulingBO.setEndTime(new Date());
-            schedulingBO = this.productLogBiz.create(schedulingBO);
-            LOGGER.info("商品服务调用失败id:{},message:{}", schedulingBO.getId(), message, ex);
+            try {
+                schedulingBO = this.productLogBiz.create(schedulingBO);
+            } catch (Exception e) {
+                LOGGER.info("商品服务调用失败id:{},message:{}", schedulingBO.getId(), message, e);
+            }
         }
 
         return result;

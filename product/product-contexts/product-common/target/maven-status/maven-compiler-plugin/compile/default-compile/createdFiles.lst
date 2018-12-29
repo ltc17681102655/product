@@ -8,6 +8,7 @@ com\liyou\product\common\model\HistoryIndexQueryHelp$1.class
 com\liyou\product\common\model\HistoryIndexQueryHelp.class
 com\liyou\product\common\model\Index.class
 com\liyou\product\common\model\HistoryIndexQueryHelp$FuzzyAnalytics.class
+com\liyou\product\common\enums\DealTypeEnum.class
 com\liyou\product\common\model\Dimension.class
 com\liyou\product\common\model\HistoryIndexQueryHelp$CustomStatisticsObject.class
 com\liyou\product\common\model\StatisticsObject.class
