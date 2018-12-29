@@ -62,11 +62,11 @@ public class TestController {
      * @return
      */
     @GetMapping("test_houseDealInfoByDealType")
-    public OResultVO test_houseDealInfoByDealType() throws Exception {
-        Response<PageCustom<HouseDealInfo>> houseDealInfoByDealType = reportFacade.getHouseDealInfoByDealType(666, 4691, Lists.newArrayList
+    public OResultVO test_houseDealInfoByDealType() {
+        Response<PageCustom<HouseDealInfo>> houseDealInfoByDealType = reportFacade.getHouseDealInfoByDealType(666, 899666, Lists.newArrayList
                 (DealTypeEnum
                                 .ROOM_TYPE,
-                        DealTypeEnum.SING_PRICE, DealTypeEnum.FLOOR, DealTypeEnum.BUILDING), -1, 100);
+                        DealTypeEnum.SING_PRICE, DealTypeEnum.FLOOR, DealTypeEnum.BUILDING), 1, 100);
 
         return new OResultVO(houseDealInfoByDealType.getData());
     }

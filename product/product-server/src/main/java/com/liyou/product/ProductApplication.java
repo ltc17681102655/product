@@ -9,11 +9,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-@EnableDubbo(scanBasePackages = {"com.liyou.product"})
 @EnableTransactionManagement
 @EnableJpaAuditing
 @EnableJpaRepositories(repositoryFactoryBeanClass = JpaRepositoryFactoryBeanExt.class)
 @SpringBootApplication(scanBasePackages = "com.liyou")
+@EnableDubbo(scanBasePackages = {"com.liyou.product"})
 public class ProductApplication {
     public static void main(String[] args) {
         new SpringApplication(ProductApplication.class).run(args);

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @Auther: ltc
  * @Date: 2018/11/30 15:02
- * @Description:
+ * @Description: 报表service
  */
 public interface ReportService {
     /**
@@ -41,5 +41,5 @@ public interface ReportService {
      * @return
      */
     PageCustom<HouseDealInfo> getHouseDealInfoByDealType(Integer cityId, Integer houseId, List<DealTypeEnum> dealTypes, Integer pageNo, Integer
-            pageSize);
+            pageSize) throws Exception;
 }

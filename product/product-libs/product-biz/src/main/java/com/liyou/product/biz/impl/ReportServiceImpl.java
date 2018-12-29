@@ -229,82 +229,82 @@ public class ReportServiceImpl implements ReportService {
     @Override
     @Product("新房成交饼状图")
     public PageCustom<HouseDealInfo> getHouseDealInfoByDealType(Integer cityId, Integer houseId, List<DealTypeEnum> dealTypes, Integer pageNo,
-                                                                Integer pageSize) {
-
-        List<HouseDealInfo> houseDealInfos = new CopyOnWriteArrayList<>();
-
-        if (CollectionUtils.isEmpty(dealTypes)) {
-            return new PageCustom<>(0, new PageRequestCustom(pageNo, pageSize), houseDealInfos);
-        }
-
-        CompoundPredicate predicate = Expressions.and()
-                .add(Expressions.eq("cityId", cityId))
-                .add(Expressions.eq("houseId", houseId));
-
-        Sort sort = new Sort(Sort.Direction.DESC, "dealCnt");
-        //分页从0开始
-        PageRequest pageRequest = new PageRequest(pageNo - 1 > 0 ? pageNo - 1 : 0, pageSize, sort);
-
-        dealTypes.parallelStream().forEach(c -> {
-            HouseDealInfo houseDealInfo = new HouseDealInfo();
-            switch (c) {
-                case ROOM_TYPE:
-                    Page<HouseDealRoomtypeAanalysisEntity> roomTypeEntityPage = houseDealRoomtypeAanalysisRepo.findAll(predicate, pageRequest);
-                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(roomTypeEntityPage.getContent())) {
-                        houseDealInfo.setDealTypeEnum(c);
-                        List<BasicDealInfo> roomTypesData = roomTypeEntityPage.getContent().stream().map(o -> {
-                            return this.convert2BasicHouseInfo(o);
-                        }).collect(Collectors.toList());
-                        houseDealInfo.setDealInfos(roomTypesData);
-                        houseDealInfo.setTotalCount(roomTypeEntityPage.getTotalElements());
-                        houseDealInfos.add(houseDealInfo);
-                    }
-                    break;
-                case SING_PRICE:
-                    Page<HouseDealSinpriceAnalysisEntity> sinpriceEntityPage = houseDealSinpriceAnalysisRepo.findAll(predicate, pageRequest);
-                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(sinpriceEntityPage.getContent())) {
-                        houseDealInfo.setDealTypeEnum(c);
-                        List<BasicDealInfo> sinpriceData = sinpriceEntityPage.getContent().stream().map(o -> {
-                            return this.convert2BasicHouseInfo(o);
-                        }).collect(Collectors.toList());
-                        houseDealInfo.setDealInfos(sinpriceData);
-                        houseDealInfo.setTotalCount(sinpriceEntityPage.getTotalElements());
-                        houseDealInfos.add(houseDealInfo);
-                    }
-                    break;
-                case FLOOR:
-                    Page<HouseDealFloorAnalysisEntity> floorEntityPage = houseDealFloorAnalysisRepo.findAll(predicate, pageRequest);
-                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(floorEntityPage.getContent())) {
-                        houseDealInfo.setDealTypeEnum(c);
-                        List<BasicDealInfo> floorData = floorEntityPage.getContent().stream().map(o -> {
-                            return this.convert2BasicHouseInfo(o);
-                        }).collect(Collectors.toList());
-                        houseDealInfo.setDealInfos(floorData);
-                        houseDealInfo.setTotalCount(floorEntityPage.getTotalElements());
-                        houseDealInfos.add(houseDealInfo);
-                    }
-                    break;
-                case BUILDING:
-                    Page<HouseDealBuildingAnalysisEntity> buildingEntityPage = houseDealBuildingAnalysisRepo.findAll(predicate, pageRequest);
-                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(buildingEntityPage.getContent())) {
-                        houseDealInfo.setDealTypeEnum(c);
-                        List<BasicDealInfo> builDingData = buildingEntityPage.getContent().stream().map(o -> {
-                            return this.convert2BasicHouseInfo(o);
-                        }).collect(Collectors.toList());
-                        houseDealInfo.setDealInfos(builDingData);
-                        houseDealInfo.setTotalCount(buildingEntityPage.getTotalElements());
-                        houseDealInfos.add(houseDealInfo);
-                    }
-                    break;
-            }
-        });
-
-        //根据DealTypeEnum的index升序返回
-        List<HouseDealInfo> sortHouseDealInfos = houseDealInfos.stream()
-                .sorted((a, b) -> a.getDealTypeEnum().getIndex().compareTo(b.getDealTypeEnum().getIndex()))
-                .collect(Collectors.toList());
-
-        return new PageCustom<>(dealTypes.size(), new PageRequestCustom(pageNo, pageSize), sortHouseDealInfos);
+                                                                Integer pageSize) throws Exception {
+        throw new Exception("error-product");
+//        List<HouseDealInfo> houseDealInfos = new CopyOnWriteArrayList<>();
+//
+//        if (CollectionUtils.isEmpty(dealTypes)) {
+//            return new PageCustom<>(0, new PageRequestCustom(pageNo, pageSize), houseDealInfos);
+//        }
+//
+//        CompoundPredicate predicate = Expressions.and()
+//                .add(Expressions.eq("cityId", cityId))
+//                .add(Expressions.eq("houseId", houseId));
+//
+//        Sort sort = new Sort(Sort.Direction.DESC, "dealCnt");
+//        //分页从0开始
+//        PageRequest pageRequest = new PageRequest(pageNo - 1 > 0 ? pageNo - 1 : 0, pageSize, sort);
+//
+//        dealTypes.parallelStream().forEach(c -> {
+//            HouseDealInfo houseDealInfo = new HouseDealInfo();
+//            switch (c) {
+//                case ROOM_TYPE:
+//                    Page<HouseDealRoomtypeAanalysisEntity> roomTypeEntityPage = houseDealRoomtypeAanalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(roomTypeEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> roomTypesData = roomTypeEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(roomTypesData);
+//                        houseDealInfo.setTotalCount(roomTypeEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//                case SING_PRICE:
+//                    Page<HouseDealSinpriceAnalysisEntity> sinpriceEntityPage = houseDealSinpriceAnalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(sinpriceEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> sinpriceData = sinpriceEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(sinpriceData);
+//                        houseDealInfo.setTotalCount(sinpriceEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//                case FLOOR:
+//                    Page<HouseDealFloorAnalysisEntity> floorEntityPage = houseDealFloorAnalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(floorEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> floorData = floorEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(floorData);
+//                        houseDealInfo.setTotalCount(floorEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//                case BUILDING:
+//                    Page<HouseDealBuildingAnalysisEntity> buildingEntityPage = houseDealBuildingAnalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(buildingEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> builDingData = buildingEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(builDingData);
+//                        houseDealInfo.setTotalCount(buildingEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//            }
+//        });
+//
+//        //根据DealTypeEnum的index升序返回
+//        List<HouseDealInfo> sortHouseDealInfos = houseDealInfos.stream()
+//                .sorted((a, b) -> a.getDealTypeEnum().getIndex().compareTo(b.getDealTypeEnum().getIndex()))
+//                .collect(Collectors.toList());
+//
+//        return new PageCustom<>(dealTypes.size(), new PageRequestCustom(pageNo, pageSize), sortHouseDealInfos);
     }
 
     private BasicDealInfo convert2BasicHouseInfo(Object obj) {

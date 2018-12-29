@@ -4,13 +4,9 @@ package com.liyou.product.biz;
 import com.liyou.product.biz.model.ProductLogBO;
 
 /**
- * <pre>
- * @description
- * @copyright: Copyright (c)2017
- * @author: vincent
- * @version: 1.0
- * @date: 2018/11/7
- * </pre>
+ * @Auther: ltc
+ * @Date: 2018/12/29 9:26
+ * @Description:
  */
 public interface ProductLogBiz {
     
