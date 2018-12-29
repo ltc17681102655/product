@@ -1,4 +1,3 @@
-com\liyou\product\ReportFacade.class
 com\liyou\product\model\HouseDealInfo.class
 com\liyou\product\enumeration\EstateDataType.class
 com\liyou\product\enumeration\HouseDimension.class
@@ -6,3 +5,4 @@ com\liyou\product\model\HousePriceAreaSegmentData.class
 com\liyou\product\model\IndexDataCollection.class
 com\liyou\product\model\mingle\BasicDealInfo.class
 com\liyou\product\enumeration\HouseSegmentEnum.class
+com\liyou\product\ReportFormsFacade.class

@@ -17,13 +17,13 @@ import java.util.List;
 
 /**
  * @Auther: ltc
- * @Date: 2018/11/6 11:40
- * @Description: 报告商城
+ * @Date: 2018/12/29 9:41
+ * @Description: 报表
  */
-public interface ReportFacade {
+public interface ReportFormsFacade {
 
     /**
-     * 指标查询报告
+     * 根据指标查询报表
      *
      * @param query
      * @return
@@ -31,7 +31,7 @@ public interface ReportFacade {
     Response<IndexDataCollection> findHistoryIndex(@Valid HistoryIndexQuery query);
 
     /**
-     * 查询 总价段，面积段，单价段 数据
+     * 查询(新房/二手房) 总价段，面积段，单价段=报表数据
      *
      * @param cityId
      * @param houseSegmentEnum
@@ -48,7 +48,7 @@ public interface ReportFacade {
                                                                                int month);
 
     /**
-     * 通过dealType获取小区成交信息
+     * 查询新房成交=报表数据
      *
      * @param cityId
      * @param houseId

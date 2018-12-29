@@ -3,9 +3,8 @@ package com.liyou.product.facade;
 import com.liyou.framework.base.model.Response;
 import com.liyou.framework.page.PageCustom;
 import com.liyou.framework.page.PageRequestCustom;
-import com.liyou.product.ReportFacade;
+import com.liyou.product.ReportFormsFacade;
 import com.liyou.product.biz.ReportService;
-import com.liyou.product.common.annotations.Product;
 import com.liyou.product.common.enums.DealTypeEnum;
 import com.liyou.product.common.model.AnalyticsObjectTypeEnum;
 import com.liyou.product.common.model.AnalyticsSort;
@@ -32,9 +31,9 @@ import java.util.List;
  * @Description:
  */
 @Service
-public class ReportFacadeImpl implements ReportFacade {
+public class ReportFormsFacadeImpl implements ReportFormsFacade {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReportFacadeImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReportFormsFacadeImpl.class);
 
     @Autowired
     @Qualifier("historyIndexServiceImpl")
