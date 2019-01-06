@@ -7,9 +7,9 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://mysql.dev.tuboshi.co:3306/sHouseApp_pre?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
-    password: LangBoshi^666
-    username: tbs
+    url: 1234
+    password: root
+    username: 1234
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       connection-test-query: SELECT 1
