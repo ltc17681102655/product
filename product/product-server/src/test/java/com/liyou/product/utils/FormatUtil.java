@@ -1,15 +1,18 @@
 package com.liyou.product.utils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.liyou.framework.common.utils.JSONUtils;
+import org.apache.commons.collections.CollectionUtils;
+
+import java.util.List;
+
+/**
+ * @Auther: ltc
+ * @Date: 2018/12/28 14:27
+ * @Description: 格式化
+ */
 public class FormatUtil {
-    /**
-     * 格式化
-     *
-     * @param jsonStr
-     * @return
-     * @author lizhgb
-     * @Date 2015-10-14 下午1:17:35
-     * @Modified 2017-04-28 下午8:55:35
-     */
+
     public static String formatJson(String jsonStr) {
         if (null == jsonStr || "".equals(jsonStr))
             return "";
@@ -61,14 +64,19 @@ public class FormatUtil {
         return sb.toString();
     }
 
-    /**
-     * 添加space
-     *
-     * @param sb
-     * @param indent
-     * @author lizhgb
-     * @Date 2015-10-14 上午10:38:04
-     */
+    public static void formatList(List list) {
+        if (CollectionUtils.isEmpty(list)) {
+            System.out.println("list为空");
+            return;
+        }
+        try {
+            String result = JSONUtils.toJSON(list);
+            System.out.println("result==" + formatJson(result));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void addIndentBlank(StringBuilder sb, int indent) {
         for (int i = 0; i < indent; i++) {
             sb.append('\t');

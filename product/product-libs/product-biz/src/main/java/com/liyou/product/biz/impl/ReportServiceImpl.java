@@ -2,17 +2,25 @@ package com.liyou.product.biz.impl;
 
 import com.liyou.framework.base.criteria.Expressions;
 import com.liyou.framework.base.criteria.predicate.CompoundPredicate;
+import com.liyou.framework.page.PageCustom;
+import com.liyou.framework.page.PageRequestCustom;
 import com.liyou.product.biz.ReportService;
 import com.liyou.product.biz.model.HousePriceAreaPieChartInfo;
+import com.liyou.product.common.annotations.Product;
+import com.liyou.product.common.enums.DealTypeEnum;
 import com.liyou.product.common.model.AnalyticsObjectTypeEnum;
 import com.liyou.product.dao.*;
 import com.liyou.product.dao.model.*;
 import com.liyou.product.enumeration.EstateDataType;
 import com.liyou.product.enumeration.HouseDimension;
 import com.liyou.product.enumeration.HouseSegmentEnum;
+import com.liyou.product.model.HouseDealInfo;
 import com.liyou.product.model.HousePriceAreaSegmentData;
+import com.liyou.product.model.mingle.BasicDealInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -20,6 +28,7 @@ import org.springframework.util.CollectionUtils;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -48,7 +57,20 @@ public class ReportServiceImpl implements ReportService {
     @Autowired
     private DistrictDealPriceDistRepo districtDealPriceDistRepo;
 
+    @Autowired
+    private HouseDealRoomtypeAanalysisRepo houseDealRoomtypeAanalysisRepo;
+
+    @Autowired
+    private HouseDealSinpriceAnalysisRepo houseDealSinpriceAnalysisRepo;
+
+    @Autowired
+    private HouseDealFloorAnalysisRepo houseDealFloorAnalysisRepo;
+
+    @Autowired
+    private HouseDealBuildingAnalysisRepo houseDealBuildingAnalysisRepo;
+
     @Override
+    @Product("报告商城饼状图")
     public List<HousePriceAreaSegmentData> getHousePriceAreaSegmentDataList(Integer cityId, AnalyticsObjectTypeEnum analyticsObjectType,
                                                                             Integer targetId, HouseSegmentEnum houseSegmentEnum, HouseDimension
                                                                                     dimension, EstateDataType estateDataType, int year, int
@@ -194,6 +216,101 @@ public class ReportServiceImpl implements ReportService {
             data.setPriceRelativeRate(getDoubleValue(e.getQuotePriceMom()));
         }
         return data;
+    }
+
+    /**
+     * 通过dealType获取小区成交信息
+     *
+     * @param cityId
+     * @param houseId
+     * @param dealTypes
+     * @return
+     */
+    @Override
+    @Product("新房成交饼状图")
+    public PageCustom<HouseDealInfo> getHouseDealInfoByDealType(Integer cityId, Integer houseId, List<DealTypeEnum> dealTypes, Integer pageNo,
+                                                                Integer pageSize) throws Exception {
+        throw new Exception("error-product");
+//        List<HouseDealInfo> houseDealInfos = new CopyOnWriteArrayList<>();
+//
+//        if (CollectionUtils.isEmpty(dealTypes)) {
+//            return new PageCustom<>(0, new PageRequestCustom(pageNo, pageSize), houseDealInfos);
+//        }
+//
+//        CompoundPredicate predicate = Expressions.and()
+//                .add(Expressions.eq("cityId", cityId))
+//                .add(Expressions.eq("houseId", houseId));
+//
+//        Sort sort = new Sort(Sort.Direction.DESC, "dealCnt");
+//        //分页从0开始
+//        PageRequest pageRequest = new PageRequest(pageNo - 1 > 0 ? pageNo - 1 : 0, pageSize, sort);
+//
+//        dealTypes.parallelStream().forEach(c -> {
+//            HouseDealInfo houseDealInfo = new HouseDealInfo();
+//            switch (c) {
+//                case ROOM_TYPE:
+//                    Page<HouseDealRoomtypeAanalysisEntity> roomTypeEntityPage = houseDealRoomtypeAanalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(roomTypeEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> roomTypesData = roomTypeEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(roomTypesData);
+//                        houseDealInfo.setTotalCount(roomTypeEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//                case SING_PRICE:
+//                    Page<HouseDealSinpriceAnalysisEntity> sinpriceEntityPage = houseDealSinpriceAnalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(sinpriceEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> sinpriceData = sinpriceEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(sinpriceData);
+//                        houseDealInfo.setTotalCount(sinpriceEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//                case FLOOR:
+//                    Page<HouseDealFloorAnalysisEntity> floorEntityPage = houseDealFloorAnalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(floorEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> floorData = floorEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(floorData);
+//                        houseDealInfo.setTotalCount(floorEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//                case BUILDING:
+//                    Page<HouseDealBuildingAnalysisEntity> buildingEntityPage = houseDealBuildingAnalysisRepo.findAll(predicate, pageRequest);
+//                    if (org.apache.commons.collections.CollectionUtils.isNotEmpty(buildingEntityPage.getContent())) {
+//                        houseDealInfo.setDealTypeEnum(c);
+//                        List<BasicDealInfo> builDingData = buildingEntityPage.getContent().stream().map(o -> {
+//                            return this.convert2BasicHouseInfo(o);
+//                        }).collect(Collectors.toList());
+//                        houseDealInfo.setDealInfos(builDingData);
+//                        houseDealInfo.setTotalCount(buildingEntityPage.getTotalElements());
+//                        houseDealInfos.add(houseDealInfo);
+//                    }
+//                    break;
+//            }
+//        });
+//
+//        //根据DealTypeEnum的index升序返回
+//        List<HouseDealInfo> sortHouseDealInfos = houseDealInfos.stream()
+//                .sorted((a, b) -> a.getDealTypeEnum().getIndex().compareTo(b.getDealTypeEnum().getIndex()))
+//                .collect(Collectors.toList());
+//
+//        return new PageCustom<>(dealTypes.size(), new PageRequestCustom(pageNo, pageSize), sortHouseDealInfos);
+    }
+
+    private BasicDealInfo convert2BasicHouseInfo(Object obj) {
+        BasicDealInfo basicDealInfo = new BasicDealInfo();
+        BeanUtils.copyProperties(obj, basicDealInfo);
+        return basicDealInfo;
     }
 
     private Double getDoubleValue(BigDecimal value) {

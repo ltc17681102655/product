@@ -6,6 +6,7 @@ import com.liyou.framework.base.criteria.predicate.CompoundPredicate;
 import com.liyou.framework.common.utils.TimeGapUtils;
 import com.liyou.framework.jpa.support.JpaPageHelp;
 import com.liyou.framework.page.PageRequestCustom;
+import com.liyou.product.common.annotations.Product;
 import com.liyou.product.common.model.*;
 import com.liyou.product.biz.utils.Converts;
 import com.liyou.product.dao.HistoryIndexRepo;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +37,7 @@ import java.util.stream.Collectors;
  *   @author linxiaohui
  *   @date 2018/5/17
  ***/
-@Service
+@Repository
 @Transactional(readOnly = true)
 public class HistoryIndexServiceImpl implements IndexService<IndexEnum, SimpleStatisticsTypeEnum> {
 
@@ -46,6 +48,7 @@ public class HistoryIndexServiceImpl implements IndexService<IndexEnum, SimpleSt
     private EntityManager entityManager;
 
     @Override
+    @Product("报告商城指标数据")
     public List<IndexValue> find(List<IndexEnum> indexes, List<AnalyticsObject> analyticsObject, List<Range> range, PageRequestCustom custom,
                                  AnalyticsSort... analyticsSorts) {
         // 查询的时间范围

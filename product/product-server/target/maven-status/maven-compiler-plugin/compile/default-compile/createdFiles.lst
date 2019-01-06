@@ -1,4 +1,5 @@
-com\liyou\product\config\Product.class
-com\liyou\product\config\ScheduledHandler.class
+com\liyou\product\response\BaseEntity.class
+com\liyou\product\controller\TestController.class
+com\liyou\product\response\OResultVO.class
 com\liyou\market\config\ServerConfig.class
 com\liyou\product\ProductApplication.class
