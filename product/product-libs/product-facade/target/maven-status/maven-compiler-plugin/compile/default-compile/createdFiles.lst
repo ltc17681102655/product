@@ -1,3 +1,3 @@
 com\liyou\product\facade\handle\ScheduledHandler.class
-com\liyou\product\facade\ReportFacadeImpl.class
+com\liyou\product\facade\ReportFormsFacadeImpl.class
 com\liyou\product\facade\ProductLogBizImpl.class

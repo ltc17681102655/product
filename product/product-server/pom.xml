@@ -65,7 +65,7 @@
     </dependencies>
 
     <build>
-        <finalName>market</finalName>
+        <finalName>product</finalName>
 
         <plugins>
             <!-- spring boot 启动跳过重新打包-->
